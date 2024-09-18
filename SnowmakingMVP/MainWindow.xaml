@@ -1,0 +1,43 @@
+﻿<Window x:Class="SnowmakingMVP.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:SnowmakingMVP"
+        Title="Snowmaking MVP Dashboard" Height="350" Width="400">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Weather Data for Big Bear Lake, CA" FontSize="18" FontWeight="Bold" Grid.Row="0" Margin="0,0,0,10"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <TextBlock Text="Temperature: " FontWeight="Bold"/>
+            <TextBlock x:Name="TemperatureTextBlock"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <TextBlock Text="Humidity: " FontWeight="Bold"/>
+            <TextBlock x:Name="HumidityTextBlock"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3">
+            <TextBlock Text="Wind Speed: " FontWeight="Bold"/>
+            <TextBlock x:Name="WindSpeedTextBlock"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="4">
+            <TextBlock Text="Wind Direction: " FontWeight="Bold"/>
+            <TextBlock x:Name="WindDirectionTextBlock"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Margin="0,10,0,0">
+            <TextBlock Text="Wet-Bulb Temperature: " FontWeight="Bold" Foreground="Blue"/>
+            <TextBlock x:Name="WetBulbTempTextBlock" Foreground="Blue"/>
+        </StackPanel>
+    </Grid>
+</Window>
