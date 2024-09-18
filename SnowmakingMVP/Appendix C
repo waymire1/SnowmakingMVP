@@ -1,0 +1,337 @@
+# Appendix C: User Interface Mock-ups
+
+This appendix provides detailed descriptions and conceptual designs of the User Interface (UI) for the snowmaking software system. The mock-ups aim to illustrate the key screens, functionalities, and user interactions within the system. These designs serve as a visual guide to help stakeholders understand how users will interact with the software.
+
+---
+
+## C.1 Introduction to User Interface Design
+
+The UI is designed to be intuitive, user-friendly, and responsive, catering to users with varying levels of technical proficiency. The interface follows modern design principles, emphasizing clarity, consistency, and ease of use. The primary goals of the UI are to:
+
+- Provide real-time information in an easily digestible format.
+- Allow users to control snowmaking operations efficiently.
+- Offer interactive tools for planning and optimization.
+- Enhance user engagement through game-ification elements.
+
+---
+
+## C.2 Key Screens and Functionalities
+
+1. **Login and Authentication Screen**
+2. **Dashboard/Home Screen**
+3. **Interactive Map Screen**
+4. **Snowgun Control Panel**
+5. **Weather Data Screen**
+6. **Production Planning Screen**
+7. **Performance Metrics and Game-ification Elements**
+8. **Historical Data Analysis Screen**
+9. **Settings and Preferences**
+
+---
+
+### C.2.1 Login and Authentication Screen
+
+**Purpose:** Securely authenticate users and provide access based on roles and permissions.
+
+**Features:**
+
+- **Username and Password Fields:** Standard fields for user credentials.
+- **Remember Me Checkbox:** Option to keep the user logged in on the device.
+- **Forgot Password Link:** Allows users to reset their password via email verification.
+- **Login Button:** Submits credentials for authentication.
+- **Company Logo and Branding:** Visual identity of the software.
+
+**Description:**
+
+Upon launching the application, users are greeted with a clean login screen featuring the company logo at the top. The center of the screen contains input fields for the username and password, along with a "Remember Me" checkbox. Below the input fields, there's a "Login" button. At the bottom, a "Forgot Password?" link directs users to a password recovery process.
+
+---
+
+### C.2.2 Dashboard/Home Screen
+
+**Purpose:** Provide an overview of current snowmaking operations, system status, and key performance indicators.
+
+**Features:**
+
+- **Header Bar:** Includes the application logo, user's name, notifications icon, and logout button.
+- **Navigation Menu:** Sidebar or top menu with links to different sections (Map, Control Panel, Weather, Planning, Analytics, Settings).
+- **Real-Time Status Panels:**
+  - **Snowguns Operational Status:** Number of active, idle, and malfunctioning snowguns.
+  - **Weather Summary:** Current temperature, humidity, wind speed/direction, wet-bulb temperature.
+  - **Production Summary:** Total snow produced, water usage, energy consumption.
+- **Alerts and Notifications:** Display critical alerts (e.g., equipment failures, severe weather conditions).
+- **Quick Actions:** Buttons for common tasks (e.g., Start/Stop All Snowguns, Access Control Panel).
+
+**Description:**
+
+The dashboard is the central hub, displaying essential information at a glance. The layout is organized with the navigation menu on the left (or top), allowing easy access to different modules. Real-time status panels are prominently displayed, using cards or widgets with icons, numbers, and color codes to indicate statuses (e.g., green for normal, red for issues). The design emphasizes readability and quick comprehension.
+
+---
+
+### C.2.3 Interactive Map Screen
+
+**Purpose:** Visualize the ski area, snowgun locations, runs/trails, and environmental data for planning and monitoring.
+
+**Features:**
+
+- **Dynamic Map Display:** High-resolution map with zoom and pan capabilities.
+- **Layer Controls:** Toggle visibility of different layers (snowguns, weather overlays, terrain).
+- **Snowgun Icons:** Represent snowgun locations with status indicators (color-coded icons).
+- **Run/Trail Highlighting:** Ability to select runs or trails, which are highlighted when clicked.
+- **Weather Overlays:** Display real-time weather patterns (e.g., wind direction, temperature gradients).
+- **Tooltip/Info Pop-ups:** Show detailed information when hovering over or clicking on map elements.
+- **Map Legend:** Explanation of symbols, colors, and layers used on the map.
+
+**Description:**
+
+The interactive map is a key feature, providing a visual representation of the entire ski area. Users can navigate the map using standard gestures (click and drag, scroll to zoom). Selecting a snowgun icon brings up a pop-up with its status and controls. Users can select multiple runs/trails for planning purposes, which are highlighted and can be added to a production plan. The layer controls allow users to customize the map view based on their needs.
+
+---
+
+### C.2.4 Snowgun Control Panel
+
+**Purpose:** Allow detailed control and monitoring of individual snowguns or groups of snowguns.
+
+**Features:**
+
+- **List/Table of Snowguns:** Displays all snowguns with key information (ID, location, status).
+- **Search and Filter Options:** Find snowguns by ID, status, or location.
+- **Control Buttons:** Start, stop, adjust settings for selected snowguns.
+- **Settings Adjustment Sliders:** Controls for water flow rate, air pressure, nozzle configuration.
+- **Directional Controls:** Adjust aiming direction and angle with compass and tilt controls.
+- **Operational Status Indicators:** Real-time feedback on each snowgun's performance.
+- **Batch Operations:** Apply settings to multiple snowguns simultaneously.
+
+**Description:**
+
+The control panel provides a detailed interface for managing snowguns. Users can select one or more snowguns from the list or directly from the map. Controls are intuitive, with sliders and buttons for adjusting settings. Real-time feedback ensures users can monitor the effects of their adjustments immediately. Batch operations streamline the process when managing multiple snowguns.
+
+---
+
+### C.2.5 Weather Data Screen
+
+**Purpose:** Display detailed weather information to inform decision-making in snowmaking operations.
+
+**Features:**
+
+- **Current Weather Conditions:** Temperature, humidity, wind speed/direction, precipitation, wet-bulb temperature.
+- **Forecast Charts:** Graphs showing weather predictions over the next hours/days.
+- **Weather Maps:** Visual overlays of weather patterns on the map (e.g., wind vectors, temperature gradients).
+- **Data Source Indicators:** Show which weather APIs are providing the data.
+- **Alerts for Weather Changes:** Notifications about significant weather events that could impact operations.
+
+**Description:**
+
+This screen provides comprehensive weather data in both numerical and visual formats. Charts and graphs make it easy to spot trends and anticipate changes. Users can switch between different data views, such as hourly forecasts or extended outlooks. The interface emphasizes clarity, with well-labeled axes and legends.
+
+---
+
+### C.2.6 Production Planning Screen
+
+**Purpose:** Assist users in planning snowmaking activities across runs/trails and scheduling operations.
+
+**Features:**
+
+- **Calendar View:** Schedule snowmaking activities over time.
+- **Run/Trail Selection:** Choose which areas to prioritize in the production cycle.
+- **Resource Allocation:** Plan water and energy usage.
+- **Simulation Tools:** Model different scenarios and predict outcomes.
+- **Task Assignments:** Allocate tasks to operators or teams.
+- **Save and Load Plans:** Store production plans for future use or modification.
+
+**Description:**
+
+The production planning screen combines interactive elements with scheduling tools. Users can drag and drop runs/trails into the calendar, assign resources, and see projected outputs. Simulation tools allow users to adjust variables and see the potential impact, enhancing strategic planning.
+
+---
+
+### C.2.7 Performance Metrics and Game-ification Elements
+
+**Purpose:** Enhance user engagement and promote efficient practices through visual metrics and rewards.
+
+**Features:**
+
+- **Performance Dashboard:** Key metrics like efficiency scores, resource usage, snow quality ratings.
+- **Achievements and Badges:** Visual representations of accomplishments (e.g., "Energy Saver," "Perfect Snow Quality").
+- **Leaderboard:** Rankings of operators or teams based on performance criteria.
+- **Progress Bars and Goals:** Visual indicators of progress towards set targets.
+- **Feedback Messages:** Encouraging messages or tips based on performance.
+
+**Description:**
+
+This section uses game-ification to motivate users. The performance dashboard presents data in an engaging way, with colorful charts and graphics. Achievements are displayed prominently, encouraging users to strive for better results. The leaderboard fosters friendly competition, while feedback messages provide guidance.
+
+---
+
+### C.2.8 Historical Data Analysis Screen
+
+**Purpose:** Provide tools for analyzing past data to inform future decisions.
+
+**Features:**
+
+- **Data Filters:** Select date ranges, specific runs/trails, or other criteria.
+- **Trend Charts:** Visualize data over time (e.g., production volumes, resource usage).
+- **Comparative Analysis:** Compare different time periods or operational strategies.
+- **Export Options:** Download data and reports in various formats (CSV, PDF).
+- **Annotations:** Add notes to specific data points for context.
+
+**Description:**
+
+The historical data analysis screen is designed for in-depth exploration of past operations. Users can customize charts, apply filters, and uncover insights. The interface supports interactive elements like hovering over data points to see details, and the ability to drill down into specific events.
+
+---
+
+### C.2.9 Settings and Preferences
+
+**Purpose:** Allow users to customize the application according to their needs.
+
+**Features:**
+
+- **User Profile Management:** Update personal information, change passwords.
+- **Notification Settings:** Customize alerts and notifications.
+- **Display Preferences:** Adjust units of measurement, theme (light/dark mode).
+- **Access Control:** For administrators to manage user roles and permissions.
+- **System Configuration:** Set default values, configure integrations with external services.
+
+**Description:**
+
+Settings are organized into categories for easy navigation. Each section provides clear options with explanations. Critical settings prompt confirmation to prevent accidental changes. The design prioritizes simplicity and clarity.
+
+---
+
+## C.3 Design Principles and Considerations
+
+- **Consistency:** Uniform use of colors, fonts, and icons throughout the application.
+- **Accessibility:** Compliance with accessibility standards (e.g., contrast ratios, keyboard navigation).
+- **Responsiveness:** UI adapts to different screen sizes and resolutions.
+- **Feedback:** Immediate visual or auditory feedback for user actions (e.g., button clicks, form submissions).
+- **Error Handling:** Clear error messages with guidance on how to resolve issues.
+- **Internationalization:** Support for multiple languages if required.
+
+---
+
+## C.4 Navigation Flow
+
+The application follows a logical navigation flow, making it easy for users to move between different sections.
+
+1. **Login Screen**
+   - Successful authentication leads to the Dashboard.
+2. **Dashboard**
+   - From here, users can access all major sections via the navigation menu.
+3. **Interactive Map**
+   - Users can jump to the Snowgun Control Panel or Production Planning directly from the map.
+4. **Snowgun Control Panel**
+   - Provides links back to the Dashboard or other sections.
+5. **Weather Data Screen**
+   - Accessible from the Dashboard or any screen via a quick-access button.
+6. **Production Planning**
+   - Integrates with the Interactive Map and Control Panel for seamless planning.
+7. **Performance Metrics**
+   - Accessible from the Dashboard, often linked with notifications or achievements.
+8. **Settings**
+   - Always accessible, usually from the header bar or user profile icon.
+
+---
+
+## C.5 Interaction Scenarios
+
+### C.5.1 Starting Snowmaking on a Specific Run
+
+1. **User logs in and arrives at the Dashboard.**
+2. **Navigates to the Interactive Map.**
+3. **Selects the desired run by clicking on it.**
+4. **A pop-up appears with options; user selects "Plan Snowmaking."**
+5. **The Production Planning Screen opens with the run pre-selected.**
+6. **User schedules the snowmaking activity on the calendar.**
+7. **Confirms the plan, which is saved and can be monitored from the Dashboard.**
+
+### C.5.2 Adjusting Snowgun Settings Based on Weather Changes
+
+1. **User receives a notification of a significant weather change.**
+2. **Navigates to the Weather Data Screen to review details.**
+3. **From the Weather Screen, clicks on a prompt to adjust operations.**
+4. **The Snowgun Control Panel opens with recommendations highlighted.**
+5. **User reviews and accepts the recommended settings adjustments.**
+6. **Changes are applied, and snowguns update their operations accordingly.**
+
+### C.5.3 Achieving a Performance Milestone
+
+1. **User completes a snowmaking session with high efficiency.**
+2. **Receives a notification of earning a new achievement (e.g., "Efficiency Expert").**
+3. **Navigates to the Performance Metrics Screen to view details.**
+4. **Sees updated statistics and a badge representing the achievement.**
+5. **Option to share the achievement with the team or on internal communications platforms.**
+
+---
+
+## C.6 Wireframe Examples (Textual Representation)
+
+**Note:** As visual images cannot be provided in this text format, the following are textual descriptions of how key screens are laid out.
+
+### C.6.1 Dashboard/Home Screen Wireframe
+
+- **Header Bar (Top):**
+  - Left: Application Logo
+  - Center: Page Title ("Dashboard")
+  - Right: User Name | Notifications Icon | Settings Icon | Logout Button
+- **Navigation Menu (Left Sidebar):**
+  - Dashboard
+  - Interactive Map
+  - Control Panel
+  - Weather
+  - Planning
+  - Analytics
+  - Settings
+- **Main Content Area:**
+  - **Row 1:**
+    - **Card 1:** Snowguns Operational Status
+    - **Card 2:** Weather Summary
+  - **Row 2:**
+    - **Card 3:** Production Summary
+    - **Card 4:** Alerts and Notifications
+- **Footer:** Company Information, Version Number
+
+### C.6.2 Interactive Map Screen Wireframe
+
+- **Header Bar:** Same as Dashboard
+- **Navigation Menu:** Same as Dashboard
+- **Map Area (Center):** Full-screen map with controls overlaid.
+- **Layer Controls (Floating on Map):** Toggle buttons for Snowguns, Weather, Terrain.
+- **Selected Element Info (Side Panel or Pop-up):** Displays when an element is clicked.
+- **Zoom Controls (Bottom Right):** Plus and minus buttons, compass icon.
+- **Legend (Bottom Left):** Explains symbols and colors used on the map.
+
+---
+
+## C.7 Accessibility and Usability Considerations
+
+- **Keyboard Navigation:** All functionalities accessible via keyboard shortcuts.
+- **Screen Reader Compatibility:** UI elements labeled appropriately for assistive technologies.
+- **Color Contrast:** Meets WCAG guidelines for color contrast to aid visibility.
+- **Font Sizes:** Adjustable font sizes for readability.
+- **Error Prevention:** Confirmation dialogs for critical actions (e.g., stopping all snowguns).
+
+---
+
+## C.8 Future Enhancements
+
+- **Mobile Application Design:** Consider developing a mobile app for on-the-go access.
+- **Customizable Dashboards:** Allow users to tailor the dashboard to display preferred metrics.
+- **Multilingual Support:** Expand language options to cater to a diverse user base.
+- **Integration with Other Systems:** Interface with inventory management or maintenance scheduling systems.
+
+---
+
+## C.9 Conclusion
+
+The User Interface mock-ups outlined in this appendix are designed to provide a clear vision of the user experience within the snowmaking software system. By focusing on intuitive design, responsive layouts, and interactive elements, the UI aims to empower users to perform their tasks efficiently and effectively.
+
+These mock-ups serve as a foundation for the development team to create the actual interfaces and should be refined based on user feedback and testing during the development process.
+
+---
+
+**Prepared by:** Rex Waymire
+**Approved by:** [Stakeholders' Names]  
+**Date of Approval:** 9/17/2024
+
+---

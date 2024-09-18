@@ -1,0 +1,738 @@
+# Appendix D: API Specifications
+
+This appendix provides detailed specifications for the Application Programming Interfaces (APIs) used within the snowmaking software system. These APIs facilitate communication between the frontend applications, backend services, edge devices, and external systems such as weather data providers and snowgun manufacturers. The specifications include endpoints, request and response formats, authentication methods, error handling, and security considerations.
+
+---
+
+## D.1 Introduction to API Specifications
+
+The APIs are designed following RESTful principles, using standard HTTP methods and JSON data formats. They enable modularity, scalability, and interoperability within the system, allowing different components to communicate effectively. This section outlines the key APIs, their functionalities, and how developers can interact with them.
+
+---
+
+## D.2 General API Guidelines
+
+- **Base URL:** All API endpoints are prefixed with the base URL, e.g., `https://api.snowmakingsystem.com/v1/`. [just an unregistered example]
+- **Authentication:** Uses OAuth 2.0 with JSON Web Tokens (JWT) for secure access.
+- **Content-Type:** All requests and responses use `application/json`.
+- **HTTP Methods:**
+  - `GET`: Retrieve resources.
+  - `POST`: Create new resources.
+  - `PUT`: Update existing resources.
+  - `DELETE`: Remove resources.
+- **Response Codes:** Standard HTTP status codes are used to indicate success or failure.
+
+---
+
+## D.3 Authentication and Authorization
+
+### D.3.1 Login Endpoint
+
+- **URL:** `/auth/login`
+- **Method:** `POST`
+- **Description:** Authenticates a user and returns an access token.
+
+#### Request:
+
+```json
+{
+  "username": "user@example.com",
+  "password": "securepassword"
+}
+```
+
+#### Response:
+
+- **Success (200 OK):**
+
+```json
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR...",
+  "token_type": "Bearer",
+  "expires_in": 3600
+}
+```
+
+- **Error (401 Unauthorized):**
+
+```json
+{
+  "error": "Invalid username or password."
+}
+```
+
+### D.3.2 Refresh Token Endpoint
+
+- **URL:** `/auth/refresh`
+- **Method:** `POST`
+- **Description:** Refreshes the access token using a valid refresh token.
+
+#### Request:
+
+```json
+{
+  "refresh_token": "dGhpc2lzYXJlZnJlc2h0b2tlbg=="
+}
+```
+
+#### Response:
+
+- **Success (200 OK):**
+
+```json
+{
+  "access_token": "new_access_token",
+  "token_type": "Bearer",
+  "expires_in": 3600
+}
+```
+
+- **Error (400 Bad Request):**
+
+```json
+{
+  "error": "Invalid refresh token."
+}
+```
+
+### D.3.3 Logout Endpoint
+
+- **URL:** `/auth/logout`
+- **Method:** `POST`
+- **Description:** Logs out the user and invalidates the current access token.
+
+#### Request Headers:
+
+- `Authorization: Bearer {access_token}`
+
+#### Response:
+
+- **Success (200 OK):**
+
+```json
+{
+  "message": "Successfully logged out."
+}
+```
+
+---
+
+## D.4 User Management API
+
+### D.4.1 Get User Profile
+
+- **URL:** `/users/me`
+- **Method:** `GET`
+- **Description:** Retrieves the authenticated user's profile.
+
+#### Request Headers:
+
+- `Authorization: Bearer {access_token}`
+
+#### Response:
+
+- **Success (200 OK):**
+
+```json
+{
+  "user_id": "12345",
+  "username": "user@example.com",
+  "first_name": "John",
+  "last_name": "Doe",
+  "roles": ["operator", "manager"],
+  "preferences": {
+    "language": "en",
+    "units": "metric"
+  }
+}
+```
+
+### D.4.2 Update User Preferences
+
+- **URL:** `/users/me/preferences`
+- **Method:** `PUT`
+- **Description:** Updates the authenticated user's preferences.
+
+#### Request Headers:
+
+- `Authorization: Bearer {access_token}`
+
+#### Request Body:
+
+```json
+{
+  "language": "en",
+  "units": "imperial"
+}
+```
+
+#### Response:
+
+- **Success (200 OK):**
+
+```json
+{
+  "message": "Preferences updated successfully."
+}
+```
+
+---
+
+## D.5 Snowgun Management API
+
+### D.5.1 Get Snowgun List
+
+- **URL:** `/snowguns`
+- **Method:** `GET`
+- **Description:** Retrieves a list of all snowguns with their statuses.
+
+#### Request Headers:
+
+- `Authorization: Bearer {access_token}`
+
+#### Response:
+
+- **Success (200 OK):**
+
+```json
+{
+  "snowguns": [
+    {
+      "snowgun_id": "SG-001",
+      "location": {
+        "latitude": 34.2439,
+        "longitude": -116.9114
+      },
+      "status": "active",
+      "manufacturer": "SnowTech",
+      "model": "ST-2000"
+    },
+    {
+      "snowgun_id": "SG-002",
+      "location": {
+        "latitude": 34.2440,
+        "longitude": -116.9120
+      },
+      "status": "idle",
+      "manufacturer": "IceMakers",
+      "model": "IM-500"
+    }
+    // More snowguns...
+  ]
+}
+```
+
+### D.5.2 Get Snowgun Details
+
+- **URL:** `/snowguns/{snowgun_id}`
+- **Method:** `GET`
+- **Description:** Retrieves detailed information about a specific snowgun.
+
+#### Path Parameters:
+
+- `snowgun_id` (string): The unique identifier of the snowgun.
+
+#### Request Headers:
+
+- `Authorization: Bearer {access_token}`
+
+#### Response:
+
+- **Success (200 OK):**
+
+```json
+{
+  "snowgun_id": "SG-001",
+  "location": {
+    "latitude": 34.2439,
+    "longitude": -116.9114
+  },
+  "status": "active",
+  "settings": {
+    "water_flow_rate": 50.0,
+    "air_pressure": 120.0,
+    "nozzle_configuration": "standard",
+    "direction": {
+      "azimuth": 45.0,
+      "elevation": 30.0
+    }
+  },
+  "manufacturer": "SnowTech",
+  "model": "ST-2000",
+  "last_maintenance": "2023-10-01T12:00:00Z"
+}
+```
+
+### D.5.3 Update Snowgun Settings
+
+- **URL:** `/snowguns/{snowgun_id}/settings`
+- **Method:** `PUT`
+- **Description:** Updates the settings of a specific snowgun.
+
+#### Path Parameters:
+
+- `snowgun_id` (string): The unique identifier of the snowgun.
+
+#### Request Headers:
+
+- `Authorization: Bearer {access_token}`
+
+#### Request Body:
+
+```json
+{
+  "water_flow_rate": 55.0,
+  "air_pressure": 125.0,
+  "nozzle_configuration": "fine",
+  "direction": {
+    "azimuth": 50.0,
+    "elevation": 35.0
+  }
+}
+```
+
+#### Response:
+
+- **Success (200 OK):**
+
+```json
+{
+  "message": "Snowgun settings updated successfully.",
+  "snowgun_id": "SG-001",
+  "updated_settings": {
+    "water_flow_rate": 55.0,
+    "air_pressure": 125.0,
+    "nozzle_configuration": "fine",
+    "direction": {
+      "azimuth": 50.0,
+      "elevation": 35.0
+    }
+  }
+}
+```
+
+### D.5.4 Start/Stop Snowgun
+
+- **URL:** `/snowguns/{snowgun_id}/actions`
+- **Method:** `POST`
+- **Description:** Starts or stops a specific snowgun.
+
+#### Path Parameters:
+
+- `snowgun_id` (string): The unique identifier of the snowgun.
+
+#### Request Headers:
+
+- `Authorization: Bearer {access_token}`
+
+#### Request Body:
+
+```json
+{
+  "action": "start"  // or "stop"
+}
+```
+
+#### Response:
+
+- **Success (200 OK):**
+
+```json
+{
+  "message": "Snowgun SG-001 started successfully."
+}
+```
+
+---
+
+## D.6 Weather Data API
+
+### D.6.1 Get Current Weather
+
+- **URL:** `/weather/current`
+- **Method:** `GET`
+- **Description:** Retrieves the current weather data for a specified location.
+
+#### Request Parameters:
+
+- `latitude` (float): Latitude of the location.
+- `longitude` (float): Longitude of the location.
+
+#### Request Headers:
+
+- `Authorization: Bearer {access_token}`
+
+#### Response:
+
+- **Success (200 OK):**
+
+```json
+{
+  "location": {
+    "latitude": 34.2439,
+    "longitude": -116.9114,
+    "name": "Big Bear Lake, CA"
+  },
+  "temperature": 28.0,
+  "humidity": 85.0,
+  "wind_speed": 5.0,
+  "wind_direction": 270.0,
+  "wet_bulb_temperature": 26.5,
+  "data_source": "OpenWeatherMap",
+  "timestamp": "2023-10-15T15:30:00Z"
+}
+```
+
+### D.6.2 Get Weather Forecast
+
+- **URL:** `/weather/forecast`
+- **Method:** `GET`
+- **Description:** Retrieves the weather forecast for a specified location and time range.
+
+#### Request Parameters:
+
+- `latitude` (float): Latitude of the location.
+- `longitude` (float): Longitude of the location.
+- `hours` (integer): Number of hours ahead for the forecast (up to 48).
+
+#### Request Headers:
+
+- `Authorization: Bearer {access_token}`
+
+#### Response:
+
+- **Success (200 OK):**
+
+```json
+{
+  "location": {
+    "latitude": 34.2439,
+    "longitude": -116.9114,
+    "name": "Big Bear Lake, CA"
+  },
+  "forecast": [
+    {
+      "timestamp": "2023-10-15T16:00:00Z",
+      "temperature": 27.0,
+      "humidity": 88.0,
+      "wind_speed": 6.0,
+      "wind_direction": 280.0,
+      "wet_bulb_temperature": 25.8
+    },
+    // More hourly data...
+  ],
+  "data_source": "WeatherAPI.com"
+}
+```
+
+---
+
+## D.7 Production Planning API
+
+### D.7.1 Create Production Plan
+
+- **URL:** `/production/plans`
+- **Method:** `POST`
+- **Description:** Creates a new production plan for snowmaking.
+
+#### Request Headers:
+
+- `Authorization: Bearer {access_token}`
+
+#### Request Body:
+
+```json
+{
+  "plan_name": "Night Shift Plan",
+  "start_time": "2023-10-15T20:00:00Z",
+  "end_time": "2023-10-16T06:00:00Z",
+  "runs": ["Run-A", "Run-B"],
+  "snow_quality": "dry",
+  "notes": "Focus on high-traffic areas."
+}
+```
+
+#### Response:
+
+- **Success (201 Created):**
+
+```json
+{
+  "message": "Production plan created successfully.",
+  "plan_id": "PP-1001"
+}
+```
+
+### D.7.2 Get Production Plans
+
+- **URL:** `/production/plans`
+- **Method:** `GET`
+- **Description:** Retrieves a list of production plans.
+
+#### Request Headers:
+
+- `Authorization: Bearer {access_token}`
+
+#### Response:
+
+- **Success (200 OK):**
+
+```json
+{
+  "plans": [
+    {
+      "plan_id": "PP-1001",
+      "plan_name": "Night Shift Plan",
+      "start_time": "2023-10-15T20:00:00Z",
+      "end_time": "2023-10-16T06:00:00Z",
+      "runs": ["Run-A", "Run-B"],
+      "snow_quality": "dry",
+      "status": "scheduled"
+    },
+    // More plans...
+  ]
+}
+```
+
+### D.7.3 Update Production Plan
+
+- **URL:** `/production/plans/{plan_id}`
+- **Method:** `PUT`
+- **Description:** Updates an existing production plan.
+
+#### Path Parameters:
+
+- `plan_id` (string): The unique identifier of the production plan.
+
+#### Request Headers:
+
+- `Authorization: Bearer {access_token}`
+
+#### Request Body:
+
+```json
+{
+  "end_time": "2023-10-16T08:00:00Z",  // Extending the plan
+  "notes": "Extended due to favorable weather."
+}
+```
+
+#### Response:
+
+- **Success (200 OK):**
+
+```json
+{
+  "message": "Production plan updated successfully.",
+  "plan_id": "PP-1001"
+}
+```
+
+---
+
+## D.8 Analytics and Reporting API
+
+### D.8.1 Get Performance Metrics
+
+- **URL:** `/analytics/metrics`
+- **Method:** `GET`
+- **Description:** Retrieves performance metrics for snowmaking operations over a specified period.
+
+#### Request Parameters:
+
+- `start_date` (string): Start date in ISO 8601 format.
+- `end_date` (string): End date in ISO 8601 format.
+
+#### Request Headers:
+
+- `Authorization: Bearer {access_token}`
+
+#### Response:
+
+- **Success (200 OK):**
+
+```json
+{
+  "start_date": "2023-10-01T00:00:00Z",
+  "end_date": "2023-10-15T23:59:59Z",
+  "metrics": {
+    "total_snow_produced": 50000.0,  // in cubic meters
+    "average_efficiency": 85.0,      // percentage
+    "water_used": 100000.0,          // in liters
+    "energy_consumed": 50000.0       // in kWh
+  }
+}
+```
+
+---
+
+## D.9 Mapping and GIS API
+
+### D.9.1 Get Map Data
+
+- **URL:** `/maps/data`
+- **Method:** `GET`
+- **Description:** Retrieves GIS data for the ski area, including runs, trails, and snowgun locations.
+
+#### Request Parameters:
+
+- `area_id` (string, optional): Identifier for a specific area within the ski resort.
+
+#### Request Headers:
+
+- `Authorization: Bearer {access_token}`
+
+#### Response:
+
+- **Success (200 OK):**
+
+```json
+{
+  "areas": [
+    {
+      "area_id": "Area-1",
+      "name": "Main Slope",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [/* GeoJSON coordinates */]
+      },
+      "runs": [
+        {
+          "run_id": "Run-A",
+          "name": "Beginner's Luck",
+          "difficulty": "easy",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [/* GeoJSON coordinates */]
+          }
+        },
+        // More runs...
+      ],
+      "snowguns": [
+        {
+          "snowgun_id": "SG-001",
+          "location": {
+            "type": "Point",
+            "coordinates": [/* GeoJSON coordinates */]
+          },
+          "status": "active"
+        },
+        // More snowguns...
+      ]
+    },
+    // More areas...
+  ]
+}
+```
+
+---
+
+## D.10 Error Handling and Response Codes
+
+### D.10.1 Standard Error Response Format
+
+All error responses follow a standard format to provide consistency.
+
+#### Error Response:
+
+```json
+{
+  "error": {
+    "code": "ERROR_CODE",
+    "message": "Detailed error message."
+  }
+}
+```
+
+### D.10.2 Common Error Codes
+
+- **400 Bad Request:** Invalid request parameters.
+- **401 Unauthorized:** Authentication required or failed.
+- **403 Forbidden:** Insufficient permissions.
+- **404 Not Found:** Resource not found.
+- **409 Conflict:** Conflict with current state (e.g., duplicate resource).
+- **500 Internal Server Error:** Server encountered an error.
+
+---
+
+## D.11 Security Considerations
+
+- **HTTPS Only:** All API interactions must use HTTPS to ensure encryption.
+- **Authentication Tokens:** Access tokens should be kept secure and not exposed in logs or URLs.
+- **Input Validation:** All inputs are validated server-side to prevent injection attacks.
+- **Rate Limiting:** APIs enforce rate limits to prevent abuse (e.g., 1000 requests per hour per user).
+
+---
+
+## D.12 Versioning and Compatibility
+
+- **Current API Version:** `v1`
+- **Versioning Strategy:** Version is specified in the URL path (e.g., `/v1/snowguns`).
+- **Deprecation Policy:** Deprecated APIs will be supported for a minimum of 6 months after the announcement.
+
+---
+
+## D.13 API Usage Guidelines
+
+- **Best Practices:** Follow RESTful principles and use appropriate HTTP methods.
+- **Error Handling:** Implement robust error handling in client applications using the provided error codes.
+- **Throttling:** Respect rate limits to ensure fair usage for all clients.
+- **Testing:** Use a sandbox environment for testing (if provided).
+
+---
+
+## D.14 Developer Support
+
+- **Documentation Portal:** Detailed API documentation and guides are available at `https://developer.snowmakingsystem.com`.
+- **API Keys and Access:** Register for API access and obtain API keys through the developer portal.
+- **Support Contact:** For technical support, contact `api-support@snowmakingsystem.com`.
+- **Community Forums:** Participate in discussions and get help from the community at `https://community.snowmakingsystem.com`.
+
+---
+
+## D.15 Examples and Code Snippets
+
+### D.15.1 Example: Fetching Current Weather Data using cURL
+
+```bash
+curl -X GET "https://api.snowmakingsystem.com/v1/weather/current?latitude=34.2439&longitude=-116.9114" \
+     -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+```
+
+### D.15.2 Example: Updating Snowgun Settings using Python Requests
+
+```python
+import requests
+
+url = "https://api.snowmakingsystem.com/v1/snowguns/SG-001/settings"
+headers = {
+    "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+    "Content-Type": "application/json"
+}
+payload = {
+    "water_flow_rate": 55.0,
+    "air_pressure": 125.0,
+    "nozzle_configuration": "fine",
+    "direction": {
+        "azimuth": 50.0,
+        "elevation": 35.0
+    }
+}
+
+response = requests.put(url, json=payload, headers=headers)
+print(response.json())
+```
+
+---
+
+## D.16 Conclusion
+
+This API specification serves as a comprehensive guide for developers integrating with the snowmaking software system. By adhering to these specifications, developers can ensure seamless communication between client applications and the backend services, enabling efficient and effective snowmaking operations.
+
+---
+
+**Prepared by:** [Your Name]  
+**Approved by:** [Stakeholders' Names]  
+**Date of Approval:** [Current Date]
+
+---

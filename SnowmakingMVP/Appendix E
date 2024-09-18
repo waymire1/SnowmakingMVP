@@ -1,0 +1,245 @@
+# Appendix E: Glossary
+
+This glossary provides definitions for technical terms, acronyms, and abbreviations used throughout the snowmaking software system requirements document. Understanding these terms is essential for all stakeholders involved in the development, implementation, and operation of the system.
+
+---
+
+## **A**
+
+- **API (Application Programming Interface):** A set of protocols, routines, and tools that allows different software applications to communicate with each other.
+
+- **Authentication:** The process of verifying the identity of a user or system.
+
+- **Authorization:** The process of determining if a user or system has permission to perform a specific action or access certain data.
+
+---
+
+## **B**
+
+- **Backend:** The server-side of an application, responsible for data storage, security, and business logic.
+
+- **Bandwidth:** The amount of data that can be transmitted in a fixed amount of time over a network connection.
+
+---
+
+## **C**
+
+- **Cloud Computing:** Delivery of computing services—including servers, storage, databases, networking, software—over the internet (“the cloud”).
+
+- **CRUD Operations:** Create, Read, Update, and Delete operations performed on data in a database.
+
+---
+
+## **D**
+
+- **Data Aggregation:** The process of collecting and summarizing data from multiple sources.
+
+- **Data Warehouse:** A central repository of integrated data from one or more disparate sources, used for reporting and data analysis.
+
+- **Docker:** An open-source platform used to deploy applications inside software containers.
+
+---
+
+## **E**
+
+- **Edge Computing:** Processing data near the source of data generation (e.g., edge devices) rather than in a centralized data-processing warehouse.
+
+- **Encryption:** The process of converting information or data into a code to prevent unauthorized access.
+
+---
+
+## **F**
+
+- **Frontend:** The client-side of an application, responsible for the user interface and user experience.
+
+---
+
+## **G**
+
+- **GIS (Geographic Information System):** A framework for gathering, managing, and analyzing spatial and geographic data.
+
+- **GUI (Graphical User Interface):** A visual way of interacting with a computer using items like windows, icons, and menus.
+
+---
+
+## **H**
+
+- **HTTP (Hypertext Transfer Protocol):** The foundation of data communication on the web.
+
+- **HTTPS (HTTP Secure):** An extension of HTTP with encryption for secure communication over a computer network.
+
+---
+
+## **I**
+
+- **ISO 8601:** An international standard for representing dates and times.
+
+---
+
+## **J**
+
+- **JSON (JavaScript Object Notation):** A lightweight data-interchange format that is easy for humans to read and write and easy for machines to parse and generate.
+
+- **JWT (JSON Web Token):** An open standard for securely transmitting information between parties as a JSON object.
+
+---
+
+## **K**
+
+- **Kubernetes:** An open-source system for automating deployment, scaling, and management of containerized applications.
+
+---
+
+## **L**
+
+- **Latency:** The delay before a transfer of data begins following an instruction for its transfer.
+
+---
+
+## **M**
+
+- **Microservices:** An architectural style that structures an application as a collection of small, autonomous services modeled around a business domain.
+
+- **MQTT (Message Queuing Telemetry Transport):** A lightweight messaging protocol for small sensors and mobile devices, optimized for high-latency or unreliable networks.
+
+---
+
+## **N**
+
+- **NoSQL Database:** A database that provides a mechanism for storage and retrieval of data modeled in means other than tabular relations used in relational databases.
+
+---
+
+## **O**
+
+- **OAuth 2.0:** An open standard for access delegation, commonly used to grant websites or applications access to information on other websites without giving them the passwords.
+
+- **ORM (Object-Relational Mapping):** A programming technique for converting data between incompatible systems using object-oriented programming languages.
+
+---
+
+## **P**
+
+- **Protocol:** A set of rules governing the exchange or transmission of data between devices.
+
+- **Python:** A high-level, interpreted programming language known for its readability and broad library support.
+
+---
+
+## **R**
+
+- **REST (Representational State Transfer):** An architectural style for designing networked applications, relying on a stateless, client-server, cacheable communications protocol.
+
+- **Role-Based Access Control (RBAC):** A method of regulating access to computer or network resources based on the roles of individual users within an enterprise.
+
+---
+
+## **S**
+
+- **SDK (Software Development Kit):** A collection of software development tools in one installable package.
+
+- **SDLC (Software Development Life Cycle):** A process for planning, creating, testing, and deploying an information system.
+
+- **SSL/TLS (Secure Sockets Layer / Transport Layer Security):** Protocols for establishing authenticated and encrypted links between networked computers.
+
+- **Scalability:** The ability of a system to handle increased load without impacting performance or requiring significant changes.
+
+---
+
+## **T**
+
+- **Tokenization:** The process of replacing sensitive data with unique identification symbols that retain all the essential information without compromising its security.
+
+---
+
+## **U**
+
+- **UI (User Interface):** The space where interactions between humans and machines occur.
+
+- **UX (User Experience):** The overall experience of a person using a product, especially in terms of how easy or pleasing it is to use.
+
+---
+
+## **V**
+
+- **Virtual Machine (VM):** An emulation of a computer system, providing the functionality of a physical computer.
+
+---
+
+## **W**
+
+- **WebSockets:** A protocol providing full-duplex communication channels over a single TCP connection.
+
+- **Wet-Bulb Temperature:** The lowest temperature that can be reached under current ambient conditions by the evaporation of water only.
+
+---
+
+## **Y**
+
+- **YAML (YAML Ain't Markup Language):** A human-readable data-serialization language commonly used for configuration files.
+
+---
+
+## **Symbols and Units**
+
+- **°F (Degrees Fahrenheit):** A unit of temperature.
+
+- **°C (Degrees Celsius):** A unit of temperature.
+
+- **kWh (Kilowatt-hour):** A unit of energy equal to one kilowatt of power sustained for one hour.
+
+- **m³ (Cubic Meters):** A unit of volume in the metric system.
+
+- **km/h (Kilometers per Hour):** A unit of speed.
+
+- **mph (Miles per Hour):** A unit of speed.
+
+---
+
+## **Miscellaneous Terms**
+
+- **Aiming Controls:** Mechanisms to adjust the direction and angle of snowguns.
+
+- **Batch Operations:** Performing actions on multiple items simultaneously.
+
+- **Edge Device:** A device that provides an entry point into enterprise or service provider core networks.
+
+- **Game-ification:** The application of typical elements of game playing to other areas of activity to encourage engagement.
+
+- **High Availability:** A system design approach and associated service implementation that ensures a prearranged level of operational performance.
+
+- **Interactive Map:** A map that allows user interaction, such as zooming, panning, and selecting map features.
+
+- **Latency:** The time delay between the cause and the effect of some physical change in the system being observed.
+
+- **Machine Learning:** A subset of artificial intelligence involving the study and use of algorithms and statistical models that computer systems use to perform tasks without explicit instructions.
+
+- **Operational Database:** A database designed to integrate data from multiple sources for additional operations on the data.
+
+- **Run/Trail:** Designated paths on a ski slope for skiing or snowboarding.
+
+- **Scalability:** The capability of a system to handle a growing amount of work or its potential to accommodate growth.
+
+- **Snowgun:** A machine that produces artificial snow by spraying water and compressed air.
+
+- **Snowmaking:** The production of snow by forcing water and pressurized air through a snowgun.
+
+- **Streaming Data Pipelines:** Systems that move data from one place to another in real-time or near-real-time.
+
+- **Travel Time (of Snow):** The time it takes for artificially made snow to travel from the snowgun to the ground.
+
+- **Water Flow Rate:** The volume of water that passes through a point per unit of time, often measured in liters per minute or gallons per minute.
+
+- **Wind Direction:** The direction from which the wind is blowing.
+
+- **Wind Speed:** The speed at which air is moving horizontally past a given point.
+
+---
+
+**Prepared by:** Rex Waymire 
+**Approved by:** [Stakeholders' Names]  
+**Date of Approval:** [Current Date]
+
+---
+
+This glossary is intended to be a living document and should be updated as new terms arise during the development and implementation of the snowmaking software system.
