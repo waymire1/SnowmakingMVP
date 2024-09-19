@@ -1,43 +1,55 @@
 ﻿<Window x:Class="SnowmakingMVP.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:gmap="clr-namespace:GMap.NET.WindowsPresentation;assembly=GMap.NET.WindowsPresentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:SnowmakingMVP"
-        Title="Snowmaking MVP Dashboard" Height="350" Width="400">
-    <Grid Margin="10">
+        Title="Snowmaking MVP Dashboard" Height="600" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <!-- Map Area -->
+            <ColumnDefinition Width="*" />
+            <!-- Info Panel -->
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <!-- Header -->
+            <RowDefinition Height="*" />
+            <!-- Content -->
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Weather Data for Big Bear Lake, CA" FontSize="18" FontWeight="Bold" Grid.Row="0" Margin="0,0,0,10"/>
-
-        <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <TextBlock Text="Temperature: " FontWeight="Bold"/>
-            <TextBlock x:Name="TemperatureTextBlock"/>
+        <!-- Header -->
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Background="#FF2D2D30">
+            <TextBlock Text="Snowmaking MVP Dashboard" Foreground="White" FontSize="18" FontWeight="Bold" Margin="10" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="2">
-            <TextBlock Text="Humidity: " FontWeight="Bold"/>
-            <TextBlock x:Name="HumidityTextBlock"/>
-        </StackPanel>
+        <!-- Map Control -->
+        <gmap:GMapControl x:Name="MapControl" Grid.Row="1" Grid.Column="0" />
 
-        <StackPanel Orientation="Horizontal" Grid.Row="3">
-            <TextBlock Text="Wind Speed: " FontWeight="Bold"/>
-            <TextBlock x:Name="WindSpeedTextBlock"/>
-        </StackPanel>
+        <!-- Info Panel -->
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
+            <TextBlock Text="Selected Snowgun Information" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" />
+            <TextBlock Text="Snowgun ID:" FontWeight="Bold" />
+            <TextBlock x:Name="SnowgunIdTextBlock" Text="N/A" Margin="0,0,0,10" />
+            <TextBlock Text="Status:" FontWeight="Bold" />
+            <TextBlock x:Name="SnowgunStatusTextBlock" Text="N/A" Margin="0,0,0,10" />
+            <!-- Placeholder for future weather station data -->
+            <TextBlock Text="Current Weather Data" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+            <TextBlock Text="Temperature:" FontWeight="Bold"/>
+            <TextBlock x:Name="TemperatureTextBlock" Text="N/A" Margin="0,0,0,10"/>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="4">
-            <TextBlock Text="Wind Direction: " FontWeight="Bold"/>
-            <TextBlock x:Name="WindDirectionTextBlock"/>
-        </StackPanel>
+            <TextBlock Text="Humidity:" FontWeight="Bold"/>
+            <TextBlock x:Name="HumidityTextBlock" Text="N/A" Margin="0,0,0,10"/>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="5" Margin="0,10,0,0">
-            <TextBlock Text="Wet-Bulb Temperature: " FontWeight="Bold" Foreground="Blue"/>
-            <TextBlock x:Name="WetBulbTempTextBlock" Foreground="Blue"/>
+            <TextBlock Text="Wind Speed:" FontWeight="Bold"/>
+            <TextBlock x:Name="WindSpeedTextBlock" Text="N/A" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Wind Direction:" FontWeight="Bold"/>
+            <TextBlock x:Name="WindDirectionTextBlock" Text="N/A" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Wet-Bulb Temperature:" FontWeight="Bold"/>
+            <TextBlock x:Name="WetBulbTempTextBlock" Text="N/A" Margin="0,0,0,10"/>
+
+            <!-- Additional data can be added here -->
         </StackPanel>
     </Grid>
 </Window>
