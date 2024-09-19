@@ -2,38 +2,47 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:gmap="clr-namespace:GMap.NET.WindowsPresentation;assembly=GMap.NET.WindowsPresentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Snowmaking MVP Dashboard" Height="600" Width="800">
+        Title="Snowmaking MVP Dashboard" Height="900" Width="1200">
+
+    <!-- Root grid layout for organizing UI elements -->
     <Grid>
+        <!-- Define the grid's columns and rows -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
-            <!-- Map Area -->
+            <!-- First column (map area) takes twice the space -->
             <ColumnDefinition Width="*" />
-            <!-- Info Panel -->
+            <!-- Second column (info panel) -->
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <!-- Header -->
+            <!-- First row (header) adjusts to content height -->
             <RowDefinition Height="*" />
-            <!-- Content -->
+            <!-- Second row (content area) takes remaining space -->
         </Grid.RowDefinitions>
 
-        <!-- Header -->
-        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Background="#FF2D2D30">
+        <!-- Header section spanning both columns -->
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Background="#FF2D2D30" Grid.Row="0">
             <TextBlock Text="Snowmaking MVP Dashboard" Foreground="White" FontSize="18" FontWeight="Bold" Margin="10" />
+            <!-- ComboBox for selecting ski areas -->
+            <ComboBox x:Name="SkiAreaComboBox" Width="200" Margin="10" SelectionChanged="SkiAreaComboBox_SelectionChanged">
+                <!-- Items are populated in code-behind -->
+            </ComboBox>
         </StackPanel>
 
-        <!-- Map Control -->
+        <!-- Map control to display the map and markers -->
         <gmap:GMapControl x:Name="MapControl" Grid.Row="1" Grid.Column="0" />
 
-        <!-- Info Panel -->
+        <!-- Info panel to display selected snowgun information and weather data -->
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
+            <!-- Snowgun Information Section -->
             <TextBlock Text="Selected Snowgun Information" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" />
             <TextBlock Text="Snowgun ID:" FontWeight="Bold" />
             <TextBlock x:Name="SnowgunIdTextBlock" Text="N/A" Margin="0,0,0,10" />
             <TextBlock Text="Status:" FontWeight="Bold" />
             <TextBlock x:Name="SnowgunStatusTextBlock" Text="N/A" Margin="0,0,0,10" />
-            <!-- Placeholder for future weather station data -->
-            <TextBlock Text="Current Weather Data" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+
+            <!-- Weather Data Section -->
+            <TextBlock Text="Current Weather Data" FontSize="18" FontWeight="Bold" Margin="0,20,0,10"/>
             <TextBlock Text="Temperature:" FontWeight="Bold"/>
             <TextBlock x:Name="TemperatureTextBlock" Text="N/A" Margin="0,0,0,10"/>
 
@@ -49,7 +58,7 @@
             <TextBlock Text="Wet-Bulb Temperature:" FontWeight="Bold"/>
             <TextBlock x:Name="WetBulbTempTextBlock" Text="N/A" Margin="0,0,0,10"/>
 
-            <!-- Additional data can be added here -->
+            <!-- Additional data fields can be added here -->
         </StackPanel>
     </Grid>
 </Window>
