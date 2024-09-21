@@ -8,9 +8,10 @@
     <Grid>
         <!-- Define the grid's columns and rows -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="728*" />
+            <ColumnDefinition Width="73*"/>
             <!-- First column (map area) takes twice the space -->
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="400*" />
             <!-- Second column (info panel) -->
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -21,7 +22,7 @@
         </Grid.RowDefinitions>
 
         <!-- Header section spanning both columns -->
-        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Background="#FF2D2D30" Grid.Row="0">
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="3" Background="#FF2D2D30" Grid.Row="0" Margin="0,0,0,840" Grid.RowSpan="2">
             <TextBlock Text="Snowmaking MVP Dashboard" Foreground="White" FontSize="18" FontWeight="Bold" Margin="10" />
             <!-- ComboBox for selecting ski areas -->
             <ComboBox x:Name="SkiAreaComboBox" Width="200" Margin="10" SelectionChanged="SkiAreaComboBox_SelectionChanged">
@@ -30,10 +31,10 @@
         </StackPanel>
 
         <!-- Map control to display the map and markers -->
-        <gmap:GMapControl x:Name="MapControl" Grid.Row="1" Grid.Column="0" />
+        <gmap:GMapControl x:Name="MapControl" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" />
 
         <!-- Info panel to display selected snowgun information and weather data -->
-        <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
+        <StackPanel Grid.Row="1" Grid.Column="2" Margin="10,10,10,10">
             <!-- Snowgun Information Section -->
             <TextBlock Text="Selected Snowgun Information" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" />
             <TextBlock Text="Snowgun ID:" FontWeight="Bold" />

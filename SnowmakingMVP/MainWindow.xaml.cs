@@ -18,7 +18,9 @@ namespace SnowmakingMVP
     public partial class MainWindow : Window
     {
         // OpenWeatherMap API key (replace with a secure method in production).
-        private const string ApiKey = "YOUR_API_KEY"; // Remember to replace with your actual API key.
+        private const string ApiKey = "YOUR_API_KEY"; // Remember to replace with your actual API key. Will place this in a better area, 'security wize'
+        //USED FOR TESTING 
+
         // Default city name for fetching weather data.
         private const string cityName = "Big Bear Lake,CA,US";
 
@@ -50,20 +52,32 @@ namespace SnowmakingMVP
         private void LoadSkiAreaData()
         {
             // Adding Big Bear Lake ski area.
+            // Right now these are in aph-order, but if they were in capital importance, or account importance, the order would be different
+
             skiAreas.Add(new SkiArea
             {
-                Name = "Big Bear Lake, CA",
-                Location = new PointLatLng(34.2439, -116.9114), // Coordinates for Big Bear Lake.
+                Name = "Bear Mountain, CA",
+                Location = new PointLatLng(34.22026068950822, -116.86076092270638), // Coordinates for Bear Mountain.
                 ZoomLevel = 13
             });
 
             // Adding Aspen Snowmass ski area.
             skiAreas.Add(new SkiArea
             {
-                Name = "Aspen Snowmass, CO",
-                Location = new PointLatLng(39.2097, -106.9498), // Coordinates for Aspen Snowmass.
+                Name = "Snow Valley, CA",
+                Location = new PointLatLng(34.21979912472986, -117.03464925387631), // Coordinates for Snow Valley.
                 ZoomLevel = 13
             });
+
+            skiAreas.Add(new SkiArea
+            {
+                Name = "Snow Summit, CA",
+                Location = new PointLatLng(34.230654, -116.891155), // Coordinates for Big Bear Snow Summit.
+                ZoomLevel = 13
+            });
+
+
+
 
             // Additional ski areas can be added here.
         }
@@ -119,7 +133,7 @@ namespace SnowmakingMVP
                 // Adding a run for Big Bear Lake.
                 runs.Add(new Run
                 {
-                    Name = "Beginner's Trail",
+                    Name = "top2",
                     Points = new List<PointLatLng>
                     {
                         new PointLatLng(34.2440, -116.9125),
@@ -127,9 +141,124 @@ namespace SnowmakingMVP
                         new PointLatLng(34.2450, -116.9115)
                     }
                 });
-                // Additional runs can be added here.
+                runs.Add(new Run
+                {
+                    Name = "Summitrun Start",
+                    Points = new List<PointLatLng>
+                    {
+                        new PointLatLng(34.2440, -116.9125),
+                        new PointLatLng(34.2445, -116.9120),
+                        new PointLatLng(34.2450, -116.9115)
+                    }
+                });
+
+                runs.Add(new Run
+                {
+                    Name = "Summit Cannon",
+                    Points = new List<PointLatLng>
+                    {
+                        new PointLatLng(34.2440, -116.9125),
+                        new PointLatLng(34.2445, -116.9120),
+                        new PointLatLng(34.2450, -116.9115)
+                    }
+                });
+
+                runs.Add(new Run
+                {
+                    Name = "Banana Corner",
+                    Points = new List<PointLatLng>
+                    {
+                        new PointLatLng(34.2440, -116.9125),
+                        new PointLatLng(34.2445, -116.9120),
+                        new PointLatLng(34.2450, -116.9115)
+                    }
+                });
+
+                runs.Add(new Run
+                {
+                    Name = "10Face",
+                    Points = new List<PointLatLng>
+                    {
+                        new PointLatLng(34.2440, -116.9125),
+                        new PointLatLng(34.2445, -116.9120),
+                        new PointLatLng(34.2450, -116.9115)
+                    }
+                });
+                runs.Add(new Run
+                {
+                    Name = "Midway",
+                    Points = new List<PointLatLng>
+                    {
+                        new PointLatLng(34.2440, -116.9125),
+                        new PointLatLng(34.2445, -116.9120),
+                        new PointLatLng(34.2450, -116.9115)
+                    }
+                });
+                runs.Add(new Run
+                {
+                    Name = "Interlude",
+                    Points = new List<PointLatLng>
+                    {
+                        new PointLatLng(34.2440, -116.9125),
+                        new PointLatLng(34.2445, -116.9120),
+                        new PointLatLng(34.2450, -116.9115)
+                    }
+                });
+                //These pertain to summit run, and are sectioned into different areas for different snowmaking areas.
+                //Miracle mile
+                runs.Add(new Run
+                {
+                    Name = "top1",
+                    Points = new List<PointLatLng>
+                    {
+                        new PointLatLng(34.2440, -116.9125),
+                        new PointLatLng(34.2445, -116.9120),
+                        new PointLatLng(34.2450, -116.9115)
+                    }
+                });
+                runs.Add(new Run
+                {
+                    Name = "Miracle Mile",
+                    Points = new List<PointLatLng>
+                    {
+                        new PointLatLng(34.2440, -116.9125),
+                        new PointLatLng(34.2445, -116.9120),
+                        new PointLatLng(34.2450, -116.9115)
+                    }
+                });
+                runs.Add(new Run
+                {
+                    Name = "19 Face",
+                    Points = new List<PointLatLng>
+                    {
+                        new PointLatLng(34.2440, -116.9125),
+                        new PointLatLng(34.2445, -116.9120),
+                        new PointLatLng(34.2450, -116.9115)
+                    }
+                });
+                runs.Add(new Run
+                {
+                    Name = "Steilhang",
+                    Points = new List<PointLatLng>
+                    {
+                        new PointLatLng(34.2440, -116.9125),
+                        new PointLatLng(34.2445, -116.9120),
+                        new PointLatLng(34.2450, -116.9115)
+                    }
+                });
+                runs.Add(new Run
+                {
+                    Name = "WidowMaker",
+                    Points = new List<PointLatLng>
+                    {
+                        new PointLatLng(34.2440, -116.9125),
+                        new PointLatLng(34.2445, -116.9120),
+                        new PointLatLng(34.2450, -116.9115)
+                    }
+                });
+                //midway has already been covered, for more control over the map, one should specify hydrants(probably).
             }
-            else if (skiArea.Name == "Aspen Snowmass, CO")
+            else if (skiArea.Name == "Snow Valley, CA")
             {
                 // Adding a run for Aspen Snowmass.
                 runs.Add(new Run
@@ -142,6 +271,7 @@ namespace SnowmakingMVP
                         new PointLatLng(39.2100, -106.9490)
                     }
                 });
+
                 // Additional runs can be added here.
             }
             // Additional ski areas and their runs can be added similarly.
@@ -161,8 +291,8 @@ namespace SnowmakingMVP
                 // Adds the route to the map control.
                 MapControl.Markers.Add(route);
 
-                // Forces the shape (visual representation) of the route to generate.
-                route.RegenerateShape(MapControl);
+                // Remove or comment out this line
+                // ((IShapable)route).RegenerateShape(MapControl);
 
                 // Customizes the appearance of the route.
                 if (route.Shape is Path path)
@@ -176,6 +306,8 @@ namespace SnowmakingMVP
                 }
             }
         }
+
+
 
         // Event handler for when a run is clicked.
         private void Run_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -215,9 +347,10 @@ namespace SnowmakingMVP
 
             // Sets the initial position and zoom level of the map.
             MapControl.Position = new PointLatLng(34.2439, -116.9114); // Big Bear Lake coordinates.
-            MapControl.MinZoom = 13;
-            MapControl.MaxZoom = 13;
-            MapControl.Zoom = 13;
+            MapControl.MinZoom = 15;
+            MapControl.MaxZoom = 15;
+            MapControl.Zoom = 15;
+                ;
 
             // Disables zooming via mouse wheel.
             MapControl.MouseWheelZoomEnabled = false;
@@ -234,6 +367,7 @@ namespace SnowmakingMVP
             // Ensures markers remain clickable even when scrolling.
             MapControl.IgnoreMarkerOnMouseWheel = true;
         }
+
 
         // Fetches weather data from the OpenWeatherMap API.
         private async void FetchWeatherData()
@@ -313,7 +447,7 @@ namespace SnowmakingMVP
                 });
                 // Additional snowguns can be added here.
             }
-            else if (skiArea.Name == "Aspen Snowmass, CO")
+            else if (skiArea.Name == "Snow Valley, CA")
             {
                 // Adding a snowgun for Aspen Snowmass.
                 snowguns.Add(new Snowgun
