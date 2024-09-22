@@ -8,21 +8,20 @@
     <Grid>
         <!-- Define the grid's columns and rows -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="728*" />
-            <ColumnDefinition Width="73*"/>
-            <!-- First column (map area) takes twice the space -->
-            <ColumnDefinition Width="400*" />
+            <!-- First column (map area) -->
+            <ColumnDefinition Width="2*" />
             <!-- Second column (info panel) -->
+            <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <!-- First row (header) -->
             <RowDefinition Height="Auto" />
-            <!-- First row (header) adjusts to content height -->
+            <!-- Second row (content area) -->
             <RowDefinition Height="*" />
-            <!-- Second row (content area) takes remaining space -->
         </Grid.RowDefinitions>
 
         <!-- Header section spanning both columns -->
-        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="3" Background="#FF2D2D30" Grid.Row="0" Margin="0,0,0,840" Grid.RowSpan="2">
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Background="#FF2D2D30" Grid.Row="0" Margin="0">
             <TextBlock Text="Snowmaking MVP Dashboard" Foreground="White" FontSize="18" FontWeight="Bold" Margin="10" />
             <!-- ComboBox for selecting ski areas -->
             <ComboBox x:Name="SkiAreaComboBox" Width="200" Margin="10" SelectionChanged="SkiAreaComboBox_SelectionChanged">
@@ -31,35 +30,63 @@
         </StackPanel>
 
         <!-- Map control to display the map and markers -->
-        <gmap:GMapControl x:Name="MapControl" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" />
+        <gmap:GMapControl x:Name="MapControl" Grid.Row="1" Grid.Column="0" />
 
         <!-- Info panel to display selected snowgun information and weather data -->
-        <StackPanel Grid.Row="1" Grid.Column="2" Margin="10,10,10,10">
-            <!-- Snowgun Information Section -->
-            <TextBlock Text="Selected Snowgun Information" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" />
-            <TextBlock Text="Snowgun ID:" FontWeight="Bold" />
-            <TextBlock x:Name="SnowgunIdTextBlock" Text="N/A" Margin="0,0,0,10" />
-            <TextBlock Text="Status:" FontWeight="Bold" />
-            <TextBlock x:Name="SnowgunStatusTextBlock" Text="N/A" Margin="0,0,0,10" />
+        <ScrollViewer Grid.Row="1" Grid.Column="1" Margin="10" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- Snowgun Selection Section -->
+                <TextBlock Text="Select Snowgun" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" />
+                <ComboBox x:Name="SnowgunComboBox" Width="200" SelectionChanged="SnowgunComboBox_SelectionChanged">
+                    <!-- Items are populated in code-behind -->
+                </ComboBox>
 
-            <!-- Weather Data Section -->
-            <TextBlock Text="Current Weather Data" FontSize="18" FontWeight="Bold" Margin="0,20,0,10"/>
-            <TextBlock Text="Temperature:" FontWeight="Bold"/>
-            <TextBlock x:Name="TemperatureTextBlock" Text="N/A" Margin="0,0,0,10"/>
+                <!-- Snowgun Information Section -->
+                <TextBlock Text="Snowgun ID:" FontWeight="Bold" />
+                <TextBox x:Name="SnowgunIdTextBox" Text="N/A" Margin="0,0,0,10" IsReadOnly="True" />
+                <TextBlock Text="Status:" FontWeight="Bold" />
+                <TextBox x:Name="SnowgunStatusTextBox" Text="N/A" Margin="0,0,0,10" IsReadOnly="True" />
+                <TextBlock Text="Type:" FontWeight="Bold" />
+                <TextBox x:Name="SnowgunTypeTextBox" Text="N/A" Margin="0,0,0,10" IsReadOnly="True" />
+                <TextBlock Text="Nozzle:" FontWeight="Bold" />
+                <TextBox x:Name="SnowgunNozzleTextBox" Text="N/A" Margin="0,0,0,10" IsReadOnly="True" />
+                <TextBlock Text="Run:" FontWeight="Bold" />
+                <TextBox x:Name="SnowgunRunTextBox" Text="N/A" Margin="0,0,0,10" />
+                <TextBlock Text="Hydrant Number:" FontWeight="Bold" />
+                <TextBox x:Name="SnowgunHydrantNumberTextBox" Text="N/A" Margin="0,0,0,10" />
 
-            <TextBlock Text="Humidity:" FontWeight="Bold"/>
-            <TextBlock x:Name="HumidityTextBlock" Text="N/A" Margin="0,0,0,10"/>
+                <!-- Weather Data from Edge Weather Station -->
+                <TextBlock Text="Weather Data from Edge Weather Station" FontSize="18" FontWeight="Bold" Margin="0,20,0,10"/>
+                <TextBlock Text="Temperature:" FontWeight="Bold"/>
+                <TextBlock x:Name="SnowgunTemperatureTextBlock" Text="N/A" Margin="0,0,0,10"/>
+                <TextBlock Text="Humidity:" FontWeight="Bold"/>
+                <TextBlock x:Name="SnowgunHumidityTextBlock" Text="N/A" Margin="0,0,0,10"/>
+                <TextBlock Text="Wind Speed:" FontWeight="Bold"/>
+                <TextBlock x:Name="SnowgunWindSpeedTextBlock" Text="N/A" Margin="0,0,0,10"/>
+                <TextBlock Text="Wind Direction:" FontWeight="Bold"/>
+                <TextBlock x:Name="SnowgunWindDirectionTextBlock" Text="N/A" Margin="0,0,0,10"/>
+                <TextBlock Text="Wet-Bulb Temperature:" FontWeight="Bold"/>
+                <TextBlock x:Name="SnowgunWetBulbTempTextBlock" Text="N/A" Margin="0,0,0,10"/>
 
-            <TextBlock Text="Wind Speed:" FontWeight="Bold"/>
-            <TextBlock x:Name="WindSpeedTextBlock" Text="N/A" Margin="0,0,0,10"/>
+                <!-- Current Weather Data Section -->
+                <TextBlock Text="Current Weather Data" FontSize="18" FontWeight="Bold" Margin="0,20,0,10"/>
 
-            <TextBlock Text="Wind Direction:" FontWeight="Bold"/>
-            <TextBlock x:Name="WindDirectionTextBlock" Text="N/A" Margin="0,0,0,10"/>
+                <ListView x:Name="WeatherDataListView" Margin="0,0,0,10" Width="364" Height="147">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Source" DisplayMemberBinding="{Binding SourceName}" Width="60"/>
+                            <GridViewColumn Header="Temp" DisplayMemberBinding="{Binding Temperature}" Width="60"/>
+                            <GridViewColumn Header="Humidity" DisplayMemberBinding="{Binding Humidity}" Width="60"/>
+                            <GridViewColumn Header="WS" DisplayMemberBinding="{Binding WindSpeed}" Width="60"/>
+                            <GridViewColumn Header="WD" DisplayMemberBinding="{Binding WindDirection}" Width="60"/>
+                            <GridViewColumn Header="Wet-Bulb" DisplayMemberBinding="{Binding WetBulbTemperature}" Width="60"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Button x:Name="HistoricalDataButton" Content="View Historical Data" Click="HistoricalDataButton_Click" Width="242"/>
 
-            <TextBlock Text="Wet-Bulb Temperature:" FontWeight="Bold"/>
-            <TextBlock x:Name="WetBulbTempTextBlock" Text="N/A" Margin="0,0,0,10"/>
-
-            <!-- Additional data fields can be added here -->
-        </StackPanel>
+                <!-- Button to view historical data -->
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Window>

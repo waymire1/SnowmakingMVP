@@ -18,8 +18,7 @@ namespace SnowmakingMVP
     public partial class MainWindow : Window
     {
         // OpenWeatherMap API key (replace with a secure method in production).
-        private const string ApiKey = "YOUR_API_KEY"; // Remember to replace with your actual API key. Will place this in a better area, 'security wize'
-        //USED FOR TESTING 
+        private const string ApiKey = "YOUR_API_KEY"; // Remember to replace with your actual API key.
 
         // Default city name for fetching weather data.
         private const string cityName = "Big Bear Lake,CA,US";
@@ -52,32 +51,28 @@ namespace SnowmakingMVP
         private void LoadSkiAreaData()
         {
             // Adding Big Bear Lake ski area.
-            // Right now these are in aph-order, but if they were in capital importance, or account importance, the order would be different
-
             skiAreas.Add(new SkiArea
             {
                 Name = "Bear Mountain, CA",
-                Location = new PointLatLng(34.22026068950822, -116.86076092270638), // Coordinates for Bear Mountain.
-                ZoomLevel = 13
+                Location = new PointLatLng(34.2439, -116.9114), // Coordinates for Big Bear Lake.
+                ZoomLevel = 14
             });
 
-            // Adding Aspen Snowmass ski area.
+            // Adding Snow Valley ski area.
             skiAreas.Add(new SkiArea
             {
                 Name = "Snow Valley, CA",
                 Location = new PointLatLng(34.21979912472986, -117.03464925387631), // Coordinates for Snow Valley.
-                ZoomLevel = 13
+                ZoomLevel = 14
             });
 
+            // Adding Snow Summit ski area.
             skiAreas.Add(new SkiArea
             {
                 Name = "Snow Summit, CA",
                 Location = new PointLatLng(34.230654, -116.891155), // Coordinates for Big Bear Snow Summit.
-                ZoomLevel = 13
+                ZoomLevel = 14
             });
-
-
-
 
             // Additional ski areas can be added here.
         }
@@ -107,6 +102,15 @@ namespace SnowmakingMVP
 
                 // Loads and displays data specific to the selected ski area.
                 LoadSnowgunData(selectedSkiArea);
+
+                // Update the snowgun ComboBox
+                SnowgunComboBox.ItemsSource = snowguns;
+                SnowgunComboBox.DisplayMemberPath = "Id";
+                if (snowguns.Count > 0)
+                {
+                    SnowgunComboBox.SelectedIndex = 0;
+                }
+
                 AddSnowgunMarkers();
                 LoadRunData(selectedSkiArea);
                 AddRunPolylines();
@@ -124,158 +128,46 @@ namespace SnowmakingMVP
         private List<Run> runs = new List<Run>();
 
         // Loads run data for the selected ski area.
+        // Loads run data for the selected ski area.
         private void LoadRunData(SkiArea skiArea)
         {
             runs.Clear(); // Clears any existing run data.
 
-            if (skiArea.Name == "Big Bear Lake, CA")
+            if (skiArea.Name == "Bear Mountain, CA")
             {
-                // Adding a run for Big Bear Lake.
+                // Adding runs for Bear Mountain.
                 runs.Add(new Run
                 {
-                    Name = "top2",
+                    Name = "Chair 9 Run",
                     Points = new List<PointLatLng>
-                    {
-                        new PointLatLng(34.2440, -116.9125),
-                        new PointLatLng(34.2445, -116.9120),
-                        new PointLatLng(34.2450, -116.9115)
-                    }
-                });
-                runs.Add(new Run
-                {
-                    Name = "Summitrun Start",
-                    Points = new List<PointLatLng>
-                    {
-                        new PointLatLng(34.2440, -116.9125),
-                        new PointLatLng(34.2445, -116.9120),
-                        new PointLatLng(34.2450, -116.9115)
-                    }
-                });
-
-                runs.Add(new Run
-                {
-                    Name = "Summit Cannon",
-                    Points = new List<PointLatLng>
-                    {
-                        new PointLatLng(34.2440, -116.9125),
-                        new PointLatLng(34.2445, -116.9120),
-                        new PointLatLng(34.2450, -116.9115)
-                    }
-                });
-
-                runs.Add(new Run
-                {
-                    Name = "Banana Corner",
-                    Points = new List<PointLatLng>
-                    {
-                        new PointLatLng(34.2440, -116.9125),
-                        new PointLatLng(34.2445, -116.9120),
-                        new PointLatLng(34.2450, -116.9115)
-                    }
-                });
-
-                runs.Add(new Run
-                {
-                    Name = "10Face",
-                    Points = new List<PointLatLng>
-                    {
-                        new PointLatLng(34.2440, -116.9125),
-                        new PointLatLng(34.2445, -116.9120),
-                        new PointLatLng(34.2450, -116.9115)
-                    }
-                });
-                runs.Add(new Run
-                {
-                    Name = "Midway",
-                    Points = new List<PointLatLng>
-                    {
-                        new PointLatLng(34.2440, -116.9125),
-                        new PointLatLng(34.2445, -116.9120),
-                        new PointLatLng(34.2450, -116.9115)
-                    }
-                });
-                runs.Add(new Run
-                {
-                    Name = "Interlude",
-                    Points = new List<PointLatLng>
-                    {
-                        new PointLatLng(34.2440, -116.9125),
-                        new PointLatLng(34.2445, -116.9120),
-                        new PointLatLng(34.2450, -116.9115)
-                    }
-                });
-                //These pertain to summit run, and are sectioned into different areas for different snowmaking areas.
-                //Miracle mile
-                runs.Add(new Run
-                {
-                    Name = "top1",
-                    Points = new List<PointLatLng>
-                    {
-                        new PointLatLng(34.2440, -116.9125),
-                        new PointLatLng(34.2445, -116.9120),
-                        new PointLatLng(34.2450, -116.9115)
-                    }
-                });
-                runs.Add(new Run
-                {
-                    Name = "Miracle Mile",
-                    Points = new List<PointLatLng>
-                    {
-                        new PointLatLng(34.2440, -116.9125),
-                        new PointLatLng(34.2445, -116.9120),
-                        new PointLatLng(34.2450, -116.9115)
-                    }
-                });
-                runs.Add(new Run
-                {
-                    Name = "19 Face",
-                    Points = new List<PointLatLng>
-                    {
-                        new PointLatLng(34.2440, -116.9125),
-                        new PointLatLng(34.2445, -116.9120),
-                        new PointLatLng(34.2450, -116.9115)
-                    }
-                });
-                runs.Add(new Run
-                {
-                    Name = "Steilhang",
-                    Points = new List<PointLatLng>
-                    {
-                        new PointLatLng(34.2440, -116.9125),
-                        new PointLatLng(34.2445, -116.9120),
-                        new PointLatLng(34.2450, -116.9115)
-                    }
-                });
-                runs.Add(new Run
-                {
-                    Name = "WidowMaker",
-                    Points = new List<PointLatLng>
-                    {
-                        new PointLatLng(34.2440, -116.9125),
-                        new PointLatLng(34.2445, -116.9120),
-                        new PointLatLng(34.2450, -116.9115)
-                    }
-                });
-                //midway has already been covered, for more control over the map, one should specify hydrants(probably).
+            {
+                new PointLatLng(34.2420, -116.9130),
+                new PointLatLng(34.2430, -116.9120),
+                new PointLatLng(34.2440, -116.9110)
             }
-            else if (skiArea.Name == "Snow Valley, CA")
-            {
-                // Adding a run for Aspen Snowmass.
-                runs.Add(new Run
-                {
-                    Name = "Expert Run",
-                    Points = new List<PointLatLng>
-                    {
-                        new PointLatLng(39.2090, -106.9500),
-                        new PointLatLng(39.2095, -106.9495),
-                        new PointLatLng(39.2100, -106.9490)
-                    }
                 });
 
                 // Additional runs can be added here.
             }
-            // Additional ski areas and their runs can be added similarly.
+            else if (skiArea.Name == "Snow Valley, CA")
+            {
+                // Adding runs for Snow Valley.
+                runs.Add(new Run
+                {
+                    Name = "Expert Run",
+                    Points = new List<PointLatLng>
+            {
+                new PointLatLng(34.2200, -117.0350),
+                new PointLatLng(34.2210, -117.0340),
+                new PointLatLng(34.2220, -117.0330)
+            }
+                });
+
+                // Additional runs can be added here.
+            }
+            // Include other ski areas as needed.
         }
+
 
         // Adds the runs to the map as polylines (routes).
         private void AddRunPolylines()
@@ -291,23 +183,19 @@ namespace SnowmakingMVP
                 // Adds the route to the map control.
                 MapControl.Markers.Add(route);
 
-                // Remove or comment out this line
-                // ((IShapable)route).RegenerateShape(MapControl);
-
                 // Customizes the appearance of the route.
-                if (route.Shape is Path path)
+                route.Shape = new Path
                 {
-                    path.Stroke = Brushes.Blue;       // Sets the color of the line to blue.
-                    path.StrokeThickness = 3;         // Sets the thickness of the line.
-                    path.Tag = run;                   // Attaches the run data to the path.
+                    Stroke = Brushes.Blue,
+                    StrokeThickness = 3,
+                    //Data = route.RegenerateRouteGeometry(MapControl),
+                    Tag = run
+                };
 
-                    // Adds an event handler for when the run is clicked.
-                    path.MouseLeftButtonUp += Run_MouseLeftButtonUp;
-                }
+                // Adds an event handler for when the run is clicked.
+                route.Shape.MouseLeftButtonUp += Run_MouseLeftButtonUp;
             }
         }
-
-
 
         // Event handler for when a run is clicked.
         private void Run_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -347,10 +235,9 @@ namespace SnowmakingMVP
 
             // Sets the initial position and zoom level of the map.
             MapControl.Position = new PointLatLng(34.2439, -116.9114); // Big Bear Lake coordinates.
-            MapControl.MinZoom = 15;
-            MapControl.MaxZoom = 15;
+            MapControl.MinZoom = 13;
+            MapControl.MaxZoom = 18;
             MapControl.Zoom = 15;
-                ;
 
             // Disables zooming via mouse wheel.
             MapControl.MouseWheelZoomEnabled = false;
@@ -368,45 +255,50 @@ namespace SnowmakingMVP
             MapControl.IgnoreMarkerOnMouseWheel = true;
         }
 
-
         // Fetches weather data from the OpenWeatherMap API.
         private async void FetchWeatherData()
         {
+            List<WeatherData> weatherDataList = new List<WeatherData>();
+
             try
             {
-                // Builds the API URL with the city name and API key.
+                // OpenWeatherMap data
                 string apiUrl = $"https://api.openweathermap.org/data/2.5/weather?q={Uri.EscapeDataString(cityName)}&units=imperial&appid={ApiKey}";
 
                 using (HttpClient client = new HttpClient())
                 {
-                    // Sends a GET request to the API.
                     string response = await client.GetStringAsync(apiUrl);
-
-                    // Parses the JSON response.
                     JObject data = JObject.Parse(response);
 
-                    // Extracts weather data from the JSON.
                     double temperature = data["main"]["temp"].ToObject<double>();
                     double humidity = data["main"]["humidity"].ToObject<double>();
                     double windSpeed = data["wind"]["speed"].ToObject<double>();
                     double windDirection = data["wind"]["deg"].ToObject<double>();
 
-                    // Calculates the wet-bulb temperature.
                     double wetBulbTemp = CalculateWetBulbTemperature(temperature, humidity);
 
-                    // Updates the UI with the fetched data.
-                    TemperatureTextBlock.Text = $"{temperature} °F";
-                    HumidityTextBlock.Text = $"{humidity} %";
-                    WindSpeedTextBlock.Text = $"{windSpeed} mph";
-                    WindDirectionTextBlock.Text = $"{windDirection}°";
-                    WetBulbTempTextBlock.Text = $"{wetBulbTemp:F2} °F";
+                    WeatherData openWeatherMapData = new WeatherData
+                    {
+                        SourceName = "OpenWeatherMap",
+                        Temperature = temperature,
+                        Humidity = humidity,
+                        WindSpeed = windSpeed,
+                        WindDirection = windDirection,
+                        WetBulbTemperature = wetBulbTemp
+                    };
+
+                    weatherDataList.Add(openWeatherMapData);
                 }
             }
             catch (Exception ex)
             {
-                // Displays an error message if fetching data fails.
                 MessageBox.Show($"Error fetching weather data: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+            // Build: Additional sources can be added here
+
+            // Update the ListView
+            WeatherDataListView.ItemsSource = weatherDataList;
         }
 
         // Calculates the wet-bulb temperature using temperature and humidity.
@@ -414,9 +306,6 @@ namespace SnowmakingMVP
         {
             // Converts temperature from Fahrenheit to Celsius.
             double tempC = (temperature - 32) * (5.0 / 9.0);
-
-            // Calculates the vapor pressure.
-            double e = (humidity / 100) * 6.105 * Math.Exp((17.27 * tempC) / (237.7 + tempC));
 
             // Simplified formula for wet-bulb temperature in Celsius.
             double wetBulbC = tempC * Math.Atan(0.151977 * Math.Sqrt(humidity + 8.313659)) +
@@ -432,34 +321,58 @@ namespace SnowmakingMVP
         }
 
         // Loads snowgun data for the selected ski area.
+        // Loads snowgun data for the selected ski area.
         private void LoadSnowgunData(SkiArea skiArea)
         {
             snowguns.Clear(); // Clears any existing snowgun data.
 
-            if (skiArea.Name == "Big Bear Lake, CA")
+            if (skiArea.Name == "Bear Mountain, CA")
             {
-                // Adding a snowgun for Big Bear Lake.
+                // Adding snowguns for Bear Mountain.
                 snowguns.Add(new Snowgun
                 {
-                    Id = "SG-001",
+                    Id = "RAT-001",
                     Location = new PointLatLng(34.2439, -116.9114),
-                    Status = "Active" // Status can be "Active", "Inactive", etc.
+                    Status = "Active",
+                    Type = "Compression Gun",
+                    Nozzle = "Standard",
+                    Run = "Summit Run",
+                    HydrantNumber = 12,
+                    // Simulated weather data
+                    Temperature = 28.5,
+                    Humidity = 65.0,
+                    WindSpeed = 5.0,
+                    WindDirection = 90.0,
+                    WetBulbTemperature = CalculateWetBulbTemperature(28.5, 65.0)
                 });
+
                 // Additional snowguns can be added here.
             }
             else if (skiArea.Name == "Snow Valley, CA")
             {
-                // Adding a snowgun for Aspen Snowmass.
+                // Adding snowguns for Snow Valley.
                 snowguns.Add(new Snowgun
                 {
                     Id = "SG-101",
-                    Location = new PointLatLng(39.2097, -106.9498),
-                    Status = "Active"
+                    Location = new PointLatLng(34.2200, -117.0350),
+                    Status = "Active",
+                    Type = "Fan Gun",
+                    Nozzle = "High-Efficiency",
+                    Run = "Expert Run",
+                    HydrantNumber = 5,
+                    // Simulated weather data
+                    Temperature = 26.0,
+                    Humidity = 70.0,
+                    WindSpeed = 7.0,
+                    WindDirection = 80.0,
+                    WetBulbTemperature = CalculateWetBulbTemperature(26.0, 70.0)
                 });
+
                 // Additional snowguns can be added here.
             }
-            // Additional ski areas and their snowguns can be added similarly.
+            // Include other ski areas as needed.
         }
+
 
         // Adds snowgun markers to the map.
         private void AddSnowgunMarkers()
@@ -498,14 +411,93 @@ namespace SnowmakingMVP
         {
             if (sender is Ellipse ellipse && ellipse.Tag is Snowgun snowgun)
             {
-                // Updates the info panel with the selected snowgun's data.
-                SnowgunIdTextBlock.Text = snowgun.Id;
-                SnowgunStatusTextBlock.Text = snowgun.Status;
-
-                // Placeholder for future data (e.g., temperature, humidity from the snowgun).
-                //SnowgunTempTextBlock.Text = "N/A";
-                //SnowgunHumidityTextBlock.Text = "N/A";
+                // Set the selected item in the ComboBox
+                SnowgunComboBox.SelectedItem = snowgun;
             }
+        }
+
+        // Event handler for when the selected snowgun changes.
+        private void SnowgunComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SnowgunComboBox.SelectedItem is Snowgun selectedSnowgun)
+            {
+                // Update the info panel with the selected snowgun's data.
+                SnowgunIdTextBox.Text = selectedSnowgun.Id;
+                SnowgunStatusTextBox.Text = selectedSnowgun.Status;
+                SnowgunTypeTextBox.Text = selectedSnowgun.Type;
+                SnowgunNozzleTextBox.Text = selectedSnowgun.Nozzle;
+                SnowgunRunTextBox.Text = selectedSnowgun.Run;
+                SnowgunHydrantNumberTextBox.Text = selectedSnowgun.HydrantNumber.ToString();
+                SnowgunTemperatureTextBlock.Text = $"{selectedSnowgun.Temperature} °F";
+                SnowgunHumidityTextBlock.Text = $"{selectedSnowgun.Humidity} %";
+                SnowgunWindSpeedTextBlock.Text = $"{selectedSnowgun.WindSpeed} mph";
+                SnowgunWindDirectionTextBlock.Text = $"{selectedSnowgun.WindDirection}°";
+                SnowgunWetBulbTempTextBlock.Text = $"{selectedSnowgun.WetBulbTemperature:F2} °F";
+
+                // Highlight the selected snowgun on the map
+                HighlightSelectedSnowgunOnMap(selectedSnowgun);
+            }
+        }
+
+        // Highlights the selected snowgun on the map.
+        private void HighlightSelectedSnowgunOnMap(Snowgun selectedSnowgun)
+        {
+            foreach (var marker in MapControl.Markers)
+            {
+                if (marker.Shape is Ellipse ellipse && ellipse.Tag is Snowgun snowgun)
+                {
+                    if (snowgun == selectedSnowgun)
+                    {
+                        // Highlight the selected snowgun
+                        ellipse.Stroke = Brushes.Yellow;
+                        ellipse.StrokeThickness = 3;
+                    }
+                    else
+                    {
+                        // Reset other snowguns
+                        ellipse.Stroke = Brushes.Black;
+                        ellipse.StrokeThickness = 1.5;
+                    }
+                }
+            }
+        }
+
+        // Event handler for when the Run text box loses focus.
+        private void SnowgunRunTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (SnowgunComboBox.SelectedItem is Snowgun selectedSnowgun)
+            {
+                selectedSnowgun.Run = SnowgunRunTextBox.Text;
+            }
+        }
+
+        // Event handler for when the Hydrant Number text box loses focus.
+        private void SnowgunHydrantNumberTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (SnowgunComboBox.SelectedItem is Snowgun selectedSnowgun)
+            {
+                if (int.TryParse(SnowgunHydrantNumberTextBox.Text, out int hydrantNumber))
+                {
+                    selectedSnowgun.HydrantNumber = hydrantNumber;
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a valid number for Hydrant Number.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    SnowgunHydrantNumberTextBox.Text = selectedSnowgun.HydrantNumber.ToString();
+                }
+            }
+        }
+
+        // Event handler for the Historical Data button click.
+        private void HistoricalDataButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Placeholder for opening the historical data window
+            MessageBox.Show("Historical data window will be implemented later.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void SnowgunIdTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 
@@ -515,6 +507,27 @@ namespace SnowmakingMVP
         public string Id { get; set; }             // Unique identifier for the snowgun.
         public PointLatLng Location { get; set; }  // Geographic location of the snowgun.
         public string Status { get; set; }         // Operational status (e.g., "Active", "Inactive").
-        // Additional properties (e.g., associated weather data) can be added here.
+        public string Type { get; set; }           // Type of gun.
+        public string Nozzle { get; set; }         // Gun nozzle.
+        public string Run { get; set; }            // Run on which the snowgun is located.
+        public int HydrantNumber { get; set; }     // Hydrant number.
+
+        // Weather data from edge weather station
+        public double Temperature { get; set; }
+        public double Humidity { get; set; }
+        public double WindSpeed { get; set; }
+        public double WindDirection { get; set; }
+        public double WetBulbTemperature { get; set; }
+    }
+
+    // Class representing weather data from different sources.
+    public class WeatherData
+    {
+        public string SourceName { get; set; }
+        public double Temperature { get; set; }
+        public double Humidity { get; set; }
+        public double WindSpeed { get; set; }
+        public double WindDirection { get; set; }
+        public double WetBulbTemperature { get; set; }
     }
 }
